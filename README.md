@@ -55,3 +55,14 @@ bin/txt-to-srt samples/lyrics-valid.txt output/lyrics.srt --overwrite
 ```
 
 The converter accepts UTF-8 TXT input, ignores blank lines, normalizes supported timestamps, preserves Unicode text, reports exact malformed line numbers, and protects existing outputs by default.
+
+
+## Validation and safe repair
+
+Use `--repair` for explicitly supported minor formatting normalization:
+
+```bash
+bin/txt-to-srt input.txt output.srt --repair
+```
+
+Repair mode never guesses missing timestamps or text, reverses timestamps, shifts overlaps, or sorts captions. Every generated SRT is internally validated before it is atomically written.
