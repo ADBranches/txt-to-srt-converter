@@ -43,6 +43,11 @@
             "@test",
             "@analyse",
             "@coding-style"
+        ],
+        "release:verify": [
+            "@quality",
+            "composer validate --strict --no-check-publish",
+            "composer audit"
         ]
     }
 }
