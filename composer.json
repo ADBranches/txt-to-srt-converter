@@ -1,0 +1,35 @@
+{
+    "name": "noviq-labs/txt-to-srt-converter",
+    "description": "Convert timestamped lyric TXT files into Premiere-compatible SRT subtitles.",
+    "type": "project",
+    "license": "proprietary",
+    "require": {
+        "php": "^8.2",
+        "ext-ctype": "*",
+        "ext-filter": "*",
+        "ext-iconv": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "ext-pcre": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "NoviqLabs\\\\TxtToSrt\\\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NoviqLabs\\\\TxtToSrt\\\\Tests\\\\": "tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "optimize-autoloader": true
+    },
+    "scripts": {
+        "test": "phpunit --colors=always"
+    }
+}

@@ -1,0 +1,6 @@
+00:00:05,000 | 00:00:04,000 | End occurs before start
+00:00:07,000 | 00:00:10,000 | This overlaps a previous caption
+00:61:00,000 | 00:61:05,000 | Minutes are outside the valid range
+00:00:12,000 | missing end time
+not-a-time | 00:00:18,000 | Invalid start time
+00:00:18,000 | 00:00:20,000 |

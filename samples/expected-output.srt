@@ -1,0 +1,11 @@
+1
+00:00:05,000 --> 00:00:08,500
+First lyric line goes here
+
+2
+00:00:08,500 --> 00:00:12,000
+Second lyric line goes here
+
+3
+00:00:12,000 --> 00:00:15,500
+Third lyric line goes here
