@@ -2,19 +2,8 @@
 <?php
 
 declare(strict_types=1);
-use NoviqLabs\TxtToSrt\Application\ConvertTxtToSrt;
-use NoviqLabs\TxtToSrt\Exception\ConversionException;
+
+use NoviqLabs\TxtToSrt\Console\ConvertCommand;
+
 require dirname(__DIR__) . '/vendor/autoload.php';
-$overwrite = false; $repair = false; $positionals = [];
-foreach (array_slice($argv, 1) as $argument) {
-    if ($argument === '--overwrite') $overwrite = true;
-    elseif ($argument === '--repair') $repair = true;
-    elseif ($argument === '--help' || $argument === '-h') { fwrite(STDOUT, "Usage: bin/txt-to-srt INPUT.txt [OUTPUT.srt] [--overwrite] [--repair]\n"); exit(0); }
-    elseif (str_starts_with($argument, '-')) { fwrite(STDERR, "Unknown option: {$argument}\n"); exit(2); }
-    else $positionals[] = $argument;
-}
-if (count($positionals) < 1 || count($positionals) > 2) { fwrite(STDERR, "Usage: bin/txt-to-srt INPUT.txt [OUTPUT.srt] [--overwrite] [--repair]\n"); exit(2); }
-try {
-    $result = (new ConvertTxtToSrt())->convert($positionals[0], $positionals[1] ?? null, $overwrite, $repair);
-    fwrite(STDOUT, sprintf("Converted %d captions: %s -> %s (%d bytes)%s\n", $result->captionCount, $result->inputFile, $result->outputFile, $result->bytesWritten, $repair ? ' [repair mode]' : ''));
-} catch (ConversionException $exception) { fwrite(STDERR, 'Conversion failed: ' . $exception->getMessage() . "\n"); exit(1); }
+exit((new ConvertCommand())->run(array_slice($argv, 1)));

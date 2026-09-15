@@ -66,3 +66,15 @@ bin/txt-to-srt input.txt output.srt --repair
 ```
 
 Repair mode never guesses missing timestamps or text, reverses timestamps, shifts overlaps, or sorts captions. Every generated SRT is internally validated before it is atomically written.
+
+
+## Batch and terminal workflow
+
+```bash
+bin/txt-to-srt lyrics.txt
+bin/txt-to-srt lyrics-directory --output-dir subtitles
+bin/txt-to-srt lyrics-directory --recursive --output-dir subtitles
+bin/txt-to-srt lyrics-directory --recursive --dry-run
+```
+
+The summary reports passed, skipped, and failed files. Existing outputs are skipped unless `--overwrite` is supplied. ANSI status colors use the Noviq Labs palette only in interactive terminals and are disabled when output is redirected.
