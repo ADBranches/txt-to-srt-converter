@@ -8,7 +8,7 @@ return [
         'max_batch_count' => 20,
         'max_batch_total_bytes' => 10_485_760,
         'allowed_extensions' => ['txt'],
-        'allowed_mime_types' => ['text/plain'],
+        'allowed_mime_types' => ['text/plain', 'text/csv'],
     ],
     'session' => [
         'cookie_httponly' => true,

@@ -13,16 +13,12 @@ final readonly class EditorController
     public function __construct(private CsrfTokenManager $csrf)
     {
     }
-
     public function __invoke(Request $request): Response
     {
-        $token = htmlspecialchars($this->csrf->token(), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
-        return Response::html('<!doctype html><html lang="en"><head><meta charset="utf-8">'
-            . '<meta name="viewport" content="width=device-width,initial-scale=1">'
-            . '<title>Noviq TXT-to-SRT Converter</title></head><body><main>'
-            . '<h1>Noviq TXT-to-SRT Converter</h1><p>Secure web interface foundation is ready.</p>'
-            . '<form method="post" action="/preview"><input type="hidden" name="_csrf" value="'
-            . $token . '"><button type="submit">Preview foundation</button></form>'
-            . '</main></body></html>');
+        $csrf = $this->csrf->token();
+        $lyrics = "00:00:01,000 | 00:00:04,000 | First lyric line\n00:00:04,000 | 00:00:07,000 | Second lyric line\n";
+        ob_start();
+        require dirname(__DIR__, 2) . '/resources/views/editor.php';
+        return Response::html((string) ob_get_clean());
     }
 }
