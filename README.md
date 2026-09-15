@@ -78,3 +78,22 @@ bin/txt-to-srt lyrics-directory --recursive --dry-run
 ```
 
 The summary reports passed, skipped, and failed files. Existing outputs are skipped unless `--overwrite` is supplied. ANSI status colors use the Noviq Labs palette only in interactive terminals and are disabled when output is redirected.
+
+## Quality verification
+
+Run the complete automated quality gate:
+
+```bash
+composer quality
+```
+
+Individual checks:
+
+```bash
+composer test
+composer analyse
+composer coding-style
+composer audit
+```
+
+The fixed SRT fixture for the Adobe Premiere Pro import test is located at `tests/Fixtures/expected-valid.srt`. The real Premiere import result is recorded in `docs/PREMIERE_IMPORT_TEST.md`.

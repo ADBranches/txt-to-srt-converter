@@ -1,0 +1,11 @@
+1
+00:00:01,000 --> 00:00:04,000
+Welcome to the Noviq TXT-to-SRT converter
+
+2
+00:00:04,000 --> 00:00:07,500
+Edit lyrics inside a simple TXT file
+
+3
+00:00:07,500 --> 00:00:11,000
+Export Premiere-ready subtitles

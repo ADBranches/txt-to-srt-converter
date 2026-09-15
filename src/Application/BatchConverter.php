@@ -18,7 +18,8 @@ final readonly class BatchConverter
         private FileEncoding $encoding = new FileEncoding(),
         private SafeInputRepairer $repairer = new SafeInputRepairer(),
         private LyricTxtParser $parser = new LyricTxtParser(),
-    ) {}
+    ) {
+    }
 
     /** @return array{passed:int,skipped:int,failed:int,messages:list<string>} */
     public function run(string $input, ?string $outputDirectory, bool $recursive, bool $overwrite, bool $repair, bool $dryRun): array
@@ -34,7 +35,9 @@ final readonly class BatchConverter
                 }
                 if ($dryRun) {
                     $content = $this->encoding->readUtf8($file);
-                    if ($repair) $content = $this->repairer->repair($content);
+                    if ($repair) {
+                        $content = $this->repairer->repair($content);
+                    }
                     $this->parser->parse($content, $repair);
                     $summary['passed']++;
                     $summary['messages'][] = "PASS {$file}: dry-run validation";

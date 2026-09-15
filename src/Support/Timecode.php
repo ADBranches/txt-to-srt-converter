@@ -6,7 +6,9 @@ namespace NoviqLabs\TxtToSrt\Support;
 
 final readonly class Timecode
 {
-    public function __construct(public int $milliseconds) {}
+    public function __construct(public int $milliseconds)
+    {
+    }
 
     public static function fromCanonical(string $value): self
     {

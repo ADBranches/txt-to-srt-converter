@@ -19,7 +19,7 @@ final class SrtValidator
         }
         foreach ($blocks as $offset => $block) {
             $lines = explode("\n", $block);
-            if (($lines[0] ?? '') !== (string)($offset + 1)) {
+            if ($lines[0] !== (string) ($offset + 1)) {
                 throw new ConversionException('Generated SRT indexes are not sequential.');
             }
             if (preg_match('/^\d{2,}:\d{2}:\d{2},\d{3} --> \d{2,}:\d{2}:\d{2},\d{3}$/', $lines[1] ?? '') !== 1) {
