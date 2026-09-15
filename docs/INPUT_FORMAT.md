@@ -38,3 +38,8 @@ The canonical timecode is `HH:MM:SS,mmm`.
 ## Generated SRT structure
 
 Each output block contains a generated index, a time range, caption text and a blank separator line.
+
+
+## Supported timestamp variants
+
+The parser accepts `H:MM:SS`, `MM:SS`, optional one-to-three digit fractions, and either a period or comma fraction separator. Every accepted value is normalized to `HH:MM:SS,mmm` in the SRT output.

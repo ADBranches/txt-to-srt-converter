@@ -44,3 +44,14 @@ Second lyric line
 ## Development status
 
 Phase 1 establishes the repository, input specification, validation rules, brand tokens and representative samples.
+
+
+## CLI usage
+
+```bash
+composer install
+bin/txt-to-srt samples/lyrics-valid.txt output/lyrics.srt
+bin/txt-to-srt samples/lyrics-valid.txt output/lyrics.srt --overwrite
+```
+
+The converter accepts UTF-8 TXT input, ignores blank lines, normalizes supported timestamps, preserves Unicode text, reports exact malformed line numbers, and protects existing outputs by default.

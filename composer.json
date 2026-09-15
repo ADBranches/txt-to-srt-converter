@@ -12,24 +12,10 @@
         "ext-mbstring": "*",
         "ext-pcre": "*"
     },
-    "require-dev": {
-        "phpunit/phpunit": "^11.0"
-    },
-    "autoload": {
-        "psr-4": {
-            "NoviqLabs\\\\TxtToSrt\\\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "NoviqLabs\\\\TxtToSrt\\\\Tests\\\\": "tests/"
-        }
-    },
-    "config": {
-        "sort-packages": true,
-        "optimize-autoloader": true
-    },
-    "scripts": {
-        "test": "phpunit --colors=always"
-    }
+    "require-dev": {"phpunit/phpunit": "^11.0"},
+    "autoload": {"psr-4": {"NoviqLabs\\TxtToSrt\\": "src/"}},
+    "autoload-dev": {"psr-4": {"NoviqLabs\\TxtToSrt\\Tests\\": "tests/"}},
+    "bin": ["bin/txt-to-srt"],
+    "config": {"sort-packages": true, "optimize-autoloader": true},
+    "scripts": {"test": "phpunit --colors=always"}
 }
