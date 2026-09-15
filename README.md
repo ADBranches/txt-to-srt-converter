@@ -104,3 +104,14 @@ The fixed SRT fixture for the Adobe Premiere Pro import test is located at `test
 Start with [docs/QUICK_START.md](docs/QUICK_START.md). Copy-ready TXT files are available in `templates/`. See [docs/PREMIERE_IMPORT_GUIDE.md](docs/PREMIERE_IMPORT_GUIDE.md) for the verified Premiere workflow and [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) for common encoding, timing, extension, and import issues.
 
 Release artifacts are generated outside the repository as `txt-to-srt-converter-1.0.0.tar.gz` with a matching SHA-256 checksum file.
+
+
+## Web UI development server
+
+The secure HTTP foundation can be started locally with:
+
+```bash
+bin/serve-ui
+```
+
+It binds to `127.0.0.1:8080` by default. Override with `TXT_TO_SRT_UI_HOST` and `TXT_TO_SRT_UI_PORT`. Only `public/` is used as the document root. The visual editor and conversion workflow are added in the next UI phase.

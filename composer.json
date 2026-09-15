@@ -28,7 +28,8 @@
         }
     },
     "bin": [
-        "bin/txt-to-srt"
+        "bin/txt-to-srt",
+        "bin/serve-ui"
     ],
     "config": {
         "sort-packages": true,
@@ -48,6 +49,7 @@
             "@quality",
             "composer validate --strict --no-check-publish",
             "composer audit"
-        ]
+        ],
+        "serve-ui": "bin/serve-ui"
     }
 }
