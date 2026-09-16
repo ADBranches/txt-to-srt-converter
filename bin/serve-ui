@@ -7,4 +7,7 @@ host="${TXT_TO_SRT_UI_HOST:-127.0.0.1}"
 port="${TXT_TO_SRT_UI_PORT:-8080}"
 
 printf 'Noviq TXT-to-SRT UI: http://%s:%s\n' "$host" "$port"
-exec php -S "$host:$port" -t "$project_directory/public" "$project_directory/public/index.php"
+
+exec php -S "$host:$port" \
+    -t "$project_directory/public" \
+    "$project_directory/public/router.php"
