@@ -1,0 +1,1 @@
+<div class="toolbar action-bar"><button type="submit" formaction="/preview">Validate and preview</button><button class="button-secondary" type="submit" formaction="/convert">Convert and download</button><span class="loading-state" role="status" aria-live="polite"><span class="spinner" aria-hidden="true"></span> Processing securely...</span></div>

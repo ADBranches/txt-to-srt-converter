@@ -44,3 +44,102 @@ Second lyric line
 ## Development status
 
 Phase 1 establishes the repository, input specification, validation rules, brand tokens and representative samples.
+
+
+## CLI usage
+
+```bash
+composer install
+bin/txt-to-srt samples/lyrics-valid.txt output/lyrics.srt
+bin/txt-to-srt samples/lyrics-valid.txt output/lyrics.srt --overwrite
+```
+
+The converter accepts UTF-8 TXT input, ignores blank lines, normalizes supported timestamps, preserves Unicode text, reports exact malformed line numbers, and protects existing outputs by default.
+
+
+## Validation and safe repair
+
+Use `--repair` for explicitly supported minor formatting normalization:
+
+```bash
+bin/txt-to-srt input.txt output.srt --repair
+```
+
+Repair mode never guesses missing timestamps or text, reverses timestamps, shifts overlaps, or sorts captions. Every generated SRT is internally validated before it is atomically written.
+
+
+## Batch and terminal workflow
+
+```bash
+bin/txt-to-srt lyrics.txt
+bin/txt-to-srt lyrics-directory --output-dir subtitles
+bin/txt-to-srt lyrics-directory --recursive --output-dir subtitles
+bin/txt-to-srt lyrics-directory --recursive --dry-run
+```
+
+The summary reports passed, skipped, and failed files. Existing outputs are skipped unless `--overwrite` is supplied. ANSI status colors use the Noviq Labs palette only in interactive terminals and are disabled when output is redirected.
+
+## Quality verification
+
+Run the complete automated quality gate:
+
+```bash
+composer quality
+```
+
+Individual checks:
+
+```bash
+composer test
+composer analyse
+composer coding-style
+composer audit
+```
+
+The fixed SRT fixture for the Adobe Premiere Pro import test is located at `tests/Fixtures/expected-valid.srt`. The real Premiere import result is recorded in `docs/PREMIERE_IMPORT_TEST.md`.
+
+
+## Version 1.0.0 release
+
+Start with [docs/QUICK_START.md](docs/QUICK_START.md). Copy-ready TXT files are available in `templates/`. See [docs/PREMIERE_IMPORT_GUIDE.md](docs/PREMIERE_IMPORT_GUIDE.md) for the verified Premiere workflow and [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) for common encoding, timing, extension, and import issues.
+
+Release artifacts are generated outside the repository as `txt-to-srt-converter-1.0.0.tar.gz` with a matching SHA-256 checksum file.
+
+
+## Web UI development server
+
+The secure HTTP foundation can be started locally with:
+
+```bash
+bin/serve-ui
+```
+
+It binds to `127.0.0.1:8080` by default. Override with `TXT_TO_SRT_UI_HOST` and `TXT_TO_SRT_UI_PORT`. Only `public/` is used as the document root. The visual editor and conversion workflow are added in the next UI phase.
+
+## Live validation and preview
+
+The browser editor provides advisory line guidance, counts, keyboard-accessible copy and clear actions, and a server-authoritative caption preview. Preview success is not conversion success.
+
+## Web UI v1.1.0
+
+Install production requirements:
+
+```bash
+chmod +x bin/install-requirements
+bin/install-requirements
+bin/serve-ui
+```
+
+Open:
+
+```text
+http://127.0.0.1:8080/
+```
+
+Contributor installation:
+
+```bash
+bin/install-requirements --development
+```
+
+See `docs/UI_QUICK_START.md`, `docs/UI_USER_GUIDE.md`, and `docs/UI_DEPLOYMENT_GUIDE.md`.

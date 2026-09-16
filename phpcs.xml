@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<ruleset name="Noviq Labs TXT-to-SRT">
+    <description>PSR-12 quality rules for the Noviq Labs TXT-to-SRT converter.</description>
+    src
+    tests
+    bin/txt-to-srt
+    <arg name="basepath" value="."/>
+    <arg name="colors"/>
+    <arg value="sp"/>
+    <rule ref="PSR12">
+        <exclude name="Generic.Files.LineLength.TooLong"/>
+    </rule>
+</ruleset>

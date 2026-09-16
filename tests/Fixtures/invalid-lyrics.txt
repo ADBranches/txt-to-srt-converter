@@ -1,0 +1,4 @@
+00:00:01,000 | 00:00:04,000 | Valid opening caption
+malformed separator and missing fields
+00:00:05,000 | 00:00:04,000 | Reversed timestamp
+00:00:06,000 | 00:00:08,000 |

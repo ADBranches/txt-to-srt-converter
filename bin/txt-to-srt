@@ -1,0 +1,9 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use NoviqLabs\TxtToSrt\Console\ConvertCommand;
+
+require dirname(__DIR__) . '/vendor/autoload.php';
+exit((new ConvertCommand())->run(array_slice($argv, 1)));

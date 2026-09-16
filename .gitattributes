@@ -5,3 +5,7 @@
 *.md text eol=lf
 *.txt text eol=lf
 *.srt text eol=lf
+/tests export-ignore
+/phpunit.xml export-ignore
+/phpstan.neon export-ignore
+/phpcs.xml export-ignore

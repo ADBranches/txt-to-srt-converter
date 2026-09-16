@@ -22,3 +22,6 @@ return [
         'information' => '#00AEEF',
     ],
 ];
+
+
+// ANSI approximations: Navy 38;2;16;35;55, Teal 38;2;69;190;166, Blue 38;2;0;174;239.

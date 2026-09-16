@@ -1,0 +1,1 @@
+<label class="drop-zone" id="drop-zone" for="batch_files"><strong>Drop TXT files here</strong><span>or choose files using the keyboard-accessible picker</span><input id="batch_files" name="batch_files[]" type="file" accept=".txt,text/plain,text/csv" multiple required></label>
