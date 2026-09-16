@@ -16,6 +16,75 @@ A Noviq Labs Ltd PHP utility for converting timestamped lyric TXT files into Pre
 - Composer 2.7 or newer
 - Required PHP extensions: ctype, filter, iconv, json, mbstring and pcre
 
+## Cross-platform installation
+
+The repository supports Debian, Ubuntu, Kali Linux, macOS, and Windows 10 or 11. The `bin/install-requirements` command supports Debian, Ubuntu, and Kali only. Do not run it on native Windows or macOS.
+
+### Linux: Debian, Ubuntu, or Kali
+
+```bash
+chmod +x bin/install-requirements
+bin/install-requirements
+```
+
+For contributor dependencies and verification:
+
+```bash
+bin/install-requirements --development
+```
+
+### macOS
+
+Install PHP 8.2 or newer and Composer 2.x using a trusted package manager, then run:
+
+```bash
+composer install --prefer-dist --no-interaction
+composer check-platform-reqs
+```
+
+### Windows: Git Bash or PowerShell
+
+Install PHP 8.2 or newer and Composer 2.x. PHP must load an active `php.ini`. If `php.ini` is missing, copy `php.ini-development` to `php.ini` in the active PHP directory.
+
+Configure the extension directory and enable the required extensions:
+
+```ini
+extension_dir = "ext"
+extension=curl
+extension=fileinfo
+extension=mbstring
+extension=openssl
+extension=zip
+```
+
+Phar must also be available. Verify the runtime:
+
+```bash
+php --ini
+php -r 'foreach (["curl", "fileinfo", "mbstring", "openssl", "phar", "zip"] as $extension) { printf("%s=%s\n", $extension, extension_loaded($extension) ? "enabled" : "disabled"); }'
+```
+
+Install locked dependencies with global Composer:
+
+```bash
+composer install --prefer-dist --no-interaction
+```
+
+If Composer is installed locally as `composer.phar`, use:
+
+```bash
+php composer.phar install --prefer-dist --no-interaction
+```
+
+Composer generates `vendor/` and `vendor/autoload.php`. These files are not committed to Git. Every fresh clone must install dependencies before starting the CLI or web UI.
+
+### Fresh-clone troubleshooting
+
+- `vendor/autoload.php` is missing: run `composer install` or `php composer.phar install`.
+- `composer: command not found`: install Composer globally or use a verified local `composer.phar`.
+- Secure Composer downloads fail on Windows: run `php --ini`, verify that PHP loads `php.ini`, set `extension_dir = "ext"`, and enable OpenSSL.
+- `bin/install-requirements` reports an unsupported operating system: use the manual macOS or Windows process above.
+
 ## Supported TXT syntax
 
 ```text
@@ -43,7 +112,7 @@ Second lyric line
 
 ## Development status
 
-Phase 1 establishes the repository, input specification, validation rules, brand tokens and representative samples.
+Version 1.1.0 is complete and includes the CLI, secure web editor, live validation and preview, single-file conversion, batch upload, one-time downloads, collision-safe ZIP archives, Unicode preservation, and Premiere-compatible SRT output.
 
 
 ## CLI usage
@@ -114,7 +183,7 @@ The secure HTTP foundation can be started locally with:
 bin/serve-ui
 ```
 
-It binds to `127.0.0.1:8080` by default. Override with `TXT_TO_SRT_UI_HOST` and `TXT_TO_SRT_UI_PORT`. Only `public/` is used as the document root. The visual editor and conversion workflow are added in the next UI phase.
+It binds to `127.0.0.1:8080` by default. Override with `TXT_TO_SRT_UI_HOST` and `TXT_TO_SRT_UI_PORT`. Only `public/` is used as the document root. The visual editor, live preview, single conversion, batch conversion, one-time downloads, and ZIP export are available in version 1.1.0.
 
 ## Live validation and preview
 
