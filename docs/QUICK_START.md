@@ -33,3 +33,21 @@ bin/txt-to-srt /path/to/lyrics --recursive --output-dir /path/to/subtitles
 ```
 
 Existing SRT files are protected unless `--overwrite` is supplied. Use `--repair` only for supported minor formatting normalization.
+
+## Web UI v1.1.0
+
+Install and start the browser interface:
+
+```bash
+chmod +x bin/install-requirements
+bin/install-requirements
+bin/serve-ui
+```
+
+Open `http://127.0.0.1:8080/`.
+
+Contributors should use:
+
+```bash
+bin/install-requirements --development
+```

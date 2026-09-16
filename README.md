@@ -119,3 +119,27 @@ It binds to `127.0.0.1:8080` by default. Override with `TXT_TO_SRT_UI_HOST` and 
 ## Live validation and preview
 
 The browser editor provides advisory line guidance, counts, keyboard-accessible copy and clear actions, and a server-authoritative caption preview. Preview success is not conversion success.
+
+## Web UI v1.1.0
+
+Install production requirements:
+
+```bash
+chmod +x bin/install-requirements
+bin/install-requirements
+bin/serve-ui
+```
+
+Open:
+
+```text
+http://127.0.0.1:8080/
+```
+
+Contributor installation:
+
+```bash
+bin/install-requirements --development
+```
+
+See `docs/UI_QUICK_START.md`, `docs/UI_USER_GUIDE.md`, and `docs/UI_DEPLOYMENT_GUIDE.md`.

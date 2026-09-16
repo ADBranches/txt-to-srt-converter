@@ -13,3 +13,10 @@ All notable changes to this project are documented here.
 - Noviq Labs Ltd terminal status styling with redirect-safe output.
 - Automated PHPUnit, PHPStan, PSR-12, security, and Premiere import verification.
 - Installation, quick-start, troubleshooting, template, and Premiere import documentation.
+
+## [1.1.0] - 2026-09-16
+
+### Added
+
+- Responsive web editor, preview, downloads, and batch ZIP workflow.
+- UI security, accessibility, regression tests, release screenshots, dependency installer, and deployment documentation.

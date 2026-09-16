@@ -1,0 +1,18 @@
+# Noviq Labs TXT-to-SRT Converter 1.1.0
+# OS requirements for Debian, Ubuntu, and Kali Linux.
+# PHP dependencies are locked in composer.lock.
+php>=8.2
+composer>=2
+php-cli
+php-common
+php-mbstring
+php-zip
+php-xml
+unzip
+zip
+git
+curl
+ca-certificates
+# Production Apache option
+apache2
+libapache2-mod-php

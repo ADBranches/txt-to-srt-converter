@@ -6,11 +6,14 @@
     "require": {
         "php": "^8.2",
         "ext-ctype": "*",
+        "ext-fileinfo": "*",
         "ext-filter": "*",
         "ext-iconv": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
-        "ext-pcre": "*"
+        "ext-pcre": "*",
+        "ext-session": "*",
+        "ext-zip": "*"
     },
     "require-dev": {
         "phpstan/phpstan": "^2.1",

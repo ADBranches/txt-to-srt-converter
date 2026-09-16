@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+set -u
+project_directory="$(cd "$(dirname "$0")/.." && pwd)"
+development_mode=0
+if [ "${1:-}" = "--development" ]; then development_mode=1; elif [ -n "${1:-}" ]; then printf 'Usage: %s [--development]\n' "$0" >&2; exit 2; fi
+if [ ! -r /etc/os-release ]; then printf '%s\n' 'Unsupported operating system.' >&2; exit 1; fi
+. /etc/os-release
+case "${ID:-}" in debian|ubuntu|kali) ;; *) printf 'Unsupported operating system: %s\n' "${ID:-unknown}" >&2; exit 1 ;; esac
+required_packages=(php-cli php-common php-mbstring php-zip php-xml composer unzip zip git curl ca-certificates)
+missing_packages=()
+for package_name in "${required_packages[@]}"; do dpkg-query -W -f='${Status}' "$package_name" 2>/dev/null | grep -Fq 'install ok installed' || missing_packages+=("$package_name"); done
+if [ "${#missing_packages[@]}" -gt 0 ]; then
+  if [ "$(id -u)" -eq 0 ]; then privilege_command=(); elif command -v sudo >/dev/null 2>&1; then privilege_command=(sudo); else printf 'Root privileges required. Missing: %s\n' "${missing_packages[*]}" >&2; exit 1; fi
+  "${privilege_command[@]}" apt-get update
+  "${privilege_command[@]}" apt-get install -y "${missing_packages[@]}"
+fi
+cd "$project_directory"
+php -r 'exit(version_compare(PHP_VERSION, "8.2.0", ">=") ? 0 : 1);' || { printf '%s\n' 'PHP 8.2 or later is required.' >&2; exit 1; }
+if [ "$development_mode" -eq 1 ]; then
+  composer install --prefer-dist --no-interaction --optimize-autoloader
+  composer check-platform-reqs
+  composer release:verify
+  printf '%s\n' TXT_TO_SRT_DEVELOPMENT_REQUIREMENTS_INSTALLED
+else
+  composer install --no-dev --prefer-dist --no-interaction --optimize-autoloader
+  composer check-platform-reqs --no-dev
+  printf '%s\n' TXT_TO_SRT_PRODUCTION_REQUIREMENTS_INSTALLED
+fi

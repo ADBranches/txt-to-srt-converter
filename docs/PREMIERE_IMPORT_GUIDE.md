@@ -11,3 +11,7 @@
 9. Edit styling and caption text using Premiere caption controls.
 
 The version 1.0.0 fixture was manually verified in Adobe Premiere Pro 2023. See `PREMIERE_IMPORT_TEST.md`.
+
+## Browser output
+
+The UI generates validated UTF-8, BOM-free SRT output verified through the Premiere import gate.
