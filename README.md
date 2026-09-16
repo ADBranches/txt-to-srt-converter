@@ -115,3 +115,7 @@ bin/serve-ui
 ```
 
 It binds to `127.0.0.1:8080` by default. Override with `TXT_TO_SRT_UI_HOST` and `TXT_TO_SRT_UI_PORT`. Only `public/` is used as the document root. The visual editor and conversion workflow are added in the next UI phase.
+
+## Live validation and preview
+
+The browser editor provides advisory line guidance, counts, keyboard-accessible copy and clear actions, and a server-authoritative caption preview. Preview success is not conversion success.

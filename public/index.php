@@ -3,10 +3,12 @@
 declare(strict_types=1);
 
 use NoviqLabs\TxtToSrt\Application\ConvertTextContent;
+use NoviqLabs\TxtToSrt\Application\PreviewConversion;
 use NoviqLabs\TxtToSrt\Controller\ConversionController;
 use NoviqLabs\TxtToSrt\Controller\DownloadController;
 use NoviqLabs\TxtToSrt\Controller\EditorController;
 use NoviqLabs\TxtToSrt\Controller\HealthController;
+use NoviqLabs\TxtToSrt\Controller\PreviewController;
 use NoviqLabs\TxtToSrt\Http\CsrfTokenManager;
 use NoviqLabs\TxtToSrt\Http\HttpException;
 use NoviqLabs\TxtToSrt\Http\Request;
@@ -34,7 +36,24 @@ $protected = static function (Request $request) use ($csrf, $convert): Response 
     }return $convert($request);
 };
 $router->add('POST', '/convert', $protected);
-$router->add('POST', '/preview', $protected);
+$previewController = new PreviewController(new PreviewConversion());
+
+$previewProtected = static function (Request $request) use ($csrf, $previewController): Response {
+    $candidate = is_string($request->post['_csrf'] ?? null)
+        ? $request->post['_csrf']
+        : null;
+
+    if (!$csrf->verify($candidate)) {
+        throw new HttpException(
+            403,
+            'The security token is invalid or expired.'
+        );
+    }
+
+    return $previewController($request);
+};
+
+$router->add('POST', '/preview', $previewProtected);
 $router->add('GET', '/download', new DownloadController());
 try {
     $response = $router->dispatch($request);

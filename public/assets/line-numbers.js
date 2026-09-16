@@ -1,0 +1,1 @@
+(()=>{const area=document.querySelector('#lyrics'),numbers=document.querySelector('#line-numbers');if(!area||!numbers)return;const sync=()=>{numbers.textContent=Array.from({length:area.value.split('\n').length},(_,i)=>i+1).join('\n');numbers.scrollTop=area.scrollTop;};area.addEventListener('input',sync);area.addEventListener('scroll',sync);sync();})();
