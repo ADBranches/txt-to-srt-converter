@@ -2,6 +2,10 @@
 
 declare(strict_types=1);
 
+use NoviqLabs\TxtToSrt\Support\ZipArchiveBuilder;
+use NoviqLabs\TxtToSrt\Controller\BatchConversionController;
+use NoviqLabs\TxtToSrt\Controller\ArchiveDownloadController;
+use NoviqLabs\TxtToSrt\Application\ConvertUploadedBatch;
 use NoviqLabs\TxtToSrt\Application\ConvertTextContent;
 use NoviqLabs\TxtToSrt\Application\PreviewConversion;
 use NoviqLabs\TxtToSrt\Controller\ConversionController;
@@ -54,6 +58,41 @@ $previewProtected = static function (Request $request) use ($csrf, $previewContr
 };
 
 $router->add('POST', '/preview', $previewProtected);
+$router->add(
+    'GET',
+    '/batch',
+    static function (Request $request) use ($csrf): Response {
+        $csrfToken = $csrf->token();
+        ob_start();
+        require dirname(__DIR__) . '/resources/views/batch.php';
+        return Response::html((string) ob_get_clean());
+    }
+);
+
+$batchService = new ConvertUploadedBatch(
+    new ConvertTextContent(),
+    $validator,
+    new SafeFilename(),
+    (int) $security['uploads']['max_batch_count'],
+    (int) $security['uploads']['max_batch_total_bytes'],
+);
+$batchController = new BatchConversionController(
+    $batchService,
+    new ZipArchiveBuilder(),
+);
+$batchProtected = static function (Request $request) use ($csrf, $batchController): Response {
+    $candidate = is_string($request->post['_csrf'] ?? null)
+        ? $request->post['_csrf']
+        : null;
+
+    if (!$csrf->verify($candidate)) {
+        throw new HttpException(403, 'The security token is invalid or expired.');
+    }
+
+    return $batchController($request);
+};
+$router->add('POST', '/batch/convert', $batchProtected);
+$router->add('GET', '/batch/archive', new ArchiveDownloadController());
 $router->add('GET', '/download', new DownloadController());
 try {
     $response = $router->dispatch($request);
