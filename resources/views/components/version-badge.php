@@ -1,0 +1,1 @@
+<span class="version-badge" aria-label="Target version 1.1.0"><span aria-hidden="true">●</span> v1.1.0</span>

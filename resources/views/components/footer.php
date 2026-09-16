@@ -1,1 +1,1 @@
-<footer>TXT-to-SRT Converter</footer>
+<footer class="site-footer"><div class="container footer-row"><strong>Noviq Labs Ltd</strong><span>Secure, server-validated subtitle conversion.</span></div></footer>

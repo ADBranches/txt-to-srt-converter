@@ -1,1 +1,1 @@
-<header>Noviq Labs Ltd</header>
+<?php require __DIR__ . '/navigation.php'; ?>
