@@ -26,6 +26,6 @@ final class PreviewEndpointTest extends TestCase
     {
         $this->expectException(HttpException::class);
         $this->expectExceptionMessage('Line 1:');
-        (new PreviewController(new PreviewConversion()))(new Request('POST', '/preview', [], ['lyrics' => 'bad row']));
+        (new PreviewController(new PreviewConversion()))(new Request('POST', '/preview', [], ['lyrics' => '00:00:01,000 | malformed row']));
     }
 }
