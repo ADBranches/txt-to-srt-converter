@@ -35,7 +35,7 @@ final readonly class ConversionController
             throw new HttpException(422, 'Paste lyrics or upload a TXT file.');
         }
         try {
-            $srt = $this->converter->convert($content, isset($request->post['repair']));
+            $srt = $this->converter->convert($content, isset($request->post['repair']), \NoviqLabs\TxtToSrt\Support\InputMode::tryFrom((string) ($request->post['input_mode'] ?? 'auto')) ?? \NoviqLabs\TxtToSrt\Support\InputMode::Auto, new \NoviqLabs\TxtToSrt\Support\AutoTimingOptions((int) round(((float) ($request->post['start_offset'] ?? 0)) * 1000), (int) round(((float) ($request->post['caption_duration'] ?? 3)) * 1000), (int) round(((float) ($request->post['caption_gap'] ?? 0)) * 1000)));
         } catch (\Throwable $error) {
             throw new HttpException(422, $error->getMessage());
         }

@@ -24,9 +24,9 @@ final class WebBatchConversionTest extends TestCase
             new UploadedFile('invalid.txt', $fixtures . 'invalid-ui-lyrics.txt', filesize($fixtures . 'invalid-ui-lyrics.txt'), UPLOAD_ERR_OK, 'text/plain'),
         ];
         $result = $service->convert($files, false);
-        self::assertSame(2, $result->passed);
-        self::assertSame(1, $result->failed);
-        self::assertSame(['shared.srt', 'shared-2.srt'], array_keys($result->successfulFiles));
+        self::assertSame(3, $result->passed);
+        self::assertSame(0, $result->failed);
+        self::assertSame(['shared.srt', 'shared-2.srt', 'invalid.srt'], array_keys($result->successfulFiles));
     }
 
     public function testCountLimitIsEnforced(): void
