@@ -18,7 +18,7 @@ final readonly class PreviewController
     {
         $content = is_string($request->post['lyrics'] ?? null) ? $request->post['lyrics'] : '';
         try {
-            $result = $this->preview->preview($content, isset($request->post['repair']), \NoviqLabs\TxtToSrt\Support\InputMode::tryFrom((string) ($request->post['input_mode'] ?? 'auto')) ?? \NoviqLabs\TxtToSrt\Support\InputMode::Auto, new \NoviqLabs\TxtToSrt\Support\AutoTimingOptions((int) round(((float) ($request->post['start_offset'] ?? 0)) * 1000), (int) round(((float) ($request->post['caption_duration'] ?? 3)) * 1000), (int) round(((float) ($request->post['caption_gap'] ?? 0)) * 1000)));
+            $result = $this->preview->preview($content, isset($request->post['repair']));
         } catch (\Throwable $error) {
             throw new HttpException(422, $error->getMessage());
         } ob_start();
