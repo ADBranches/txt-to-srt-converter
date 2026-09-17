@@ -1,1 +1,3 @@
-<?php require __DIR__ . '/navigation.php'; ?>
+<?php
+
+require __DIR__ . '/navigation.php';
