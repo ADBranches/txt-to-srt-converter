@@ -1,3 +1,1 @@
-<?php if (isset($result)) :
-    ?><div class="batch-summary" role="status"><strong>Batch complete</strong><span>Passed: <?= $result->passed ?></span><span>Skipped: <?= $result->skipped ?></span><span>Failed: <?= $result->failed ?></span></div><?php
-endif ?>
+<?php if (isset($result)): ?><div class="batch-summary" role="status"><strong>Batch complete</strong><span>Passed: <?= $result->passed ?></span><span>Skipped: <?= $result->skipped ?></span><span>Failed: <?= $result->failed ?></span></div><?php endif ?>
