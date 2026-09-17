@@ -29,10 +29,12 @@ $request = Request::fromGlobals();
 (new Session())->start($security['session'], false);
 $csrf = new CsrfTokenManager((int)$security['csrf']['token_bytes']);
 $router = new Router();
-$router->add('GET', '/', new EditorController($csrf));
+$editor = new EditorController($csrf);
+$router->add('GET', '/', $editor);
 $router->add('GET', '/health', new HealthController());
+$router->add('GET', '/favicon.ico', static fn (Request $request): Response => new Response('', 204));
 $validator = new UploadValidator((int)$security['uploads']['max_single_bytes'], $security['uploads']['allowed_extensions'], $security['uploads']['allowed_mime_types']);
-$convert = new ConversionController(new ConvertTextContent(), $validator, new SafeFilename());
+$convert = new ConversionController(new ConvertTextContent(), $validator, new SafeFilename(), $editor);
 $protected = static function (Request $request) use ($csrf, $convert): Response {
     $candidate = is_string($request->post['_csrf'] ?? null) ? $request->post['_csrf'] : null;
     if (!$csrf->verify($candidate)) {
