@@ -168,7 +168,7 @@ composer audit
 The fixed SRT fixture for the Adobe Premiere Pro import test is located at `tests/Fixtures/expected-valid.srt`. The real Premiere import result is recorded in `docs/PREMIERE_IMPORT_TEST.md`.
 
 
-## Version 1.0.0 release
+## Earlier version 1.0.0 release
 
 Start with [docs/QUICK_START.md](docs/QUICK_START.md). Copy-ready TXT files are available in `templates/`. See [docs/PREMIERE_IMPORT_GUIDE.md](docs/PREMIERE_IMPORT_GUIDE.md) for the verified Premiere workflow and [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) for common encoding, timing, extension, and import issues.
 
